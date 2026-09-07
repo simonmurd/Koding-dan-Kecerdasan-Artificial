@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LKPD Interaktif: Karya Pemandangan Malam</title>
+    <title>LKPD Interaktif: Modul 2 - Efisiensi Kode & Detail Visual</title>
     <style>
-        /* Import Font Modern & Friendly */
         @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&family=Fira+Code:wght@400;500&display=swap');
 
         * {
@@ -19,7 +18,7 @@
             background-color: #f8f9fc;
             color: #2d3748;
             height: 100vh;
-            height: 100dvh; /* Menggunakan Dynamic Viewport Height untuk HP */
+            height: 100dvh;
             display: flex;
             flex-direction: column;
         }
@@ -54,7 +53,6 @@
             box-shadow: 0 2px 10px rgba(0, 114, 255, 0.1);
         }
 
-        /* Navigasi Tab khusus Layar HP */
         .mobile-tabs {
             display: none;
             background: #ffffff;
@@ -231,7 +229,6 @@
             background-color: #ffffff;
         }
 
-        /* Modal Layar Penuh (Fullscreen) Preview */
         .preview-panel.fullscreen-mode {
             position: fixed;
             top: 0;
@@ -242,9 +239,6 @@
             border-radius: 0;
         }
 
-        /* ==========================================
-           RESPONSIF KHUSUS TAMPILAN HP (MOBILE)
-           ========================================== */
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
@@ -278,7 +272,6 @@
                 display: flex;
             }
 
-            /* Mencegah Auto-Zoom Browser pada HP */
             textarea {
                 font-size: 16px !important;
                 padding: 15px;
@@ -303,41 +296,43 @@
 
     <header>
         <h1>CodeQuest: Canvas Edition</h1>
-        <div class="badge">🎨 Misi: Pemandangan Malam</div>
+        <div class="badge">🚀 Modul 2: Efisiensi Kode & Detail Visual</div>
     </header>
 
-    <!-- Navigasi Tab Khusus Layar HP -->
     <div class="mobile-tabs">
-        <button id="tab-btn-instruction" class="tab-btn active" onclick="switchTab('instruction')">📖 Instruksi</button>
+        <button id="tab-btn-instruction" class="tab-btn active" onclick="switchTab('instruction')">📖 Materi</button>
         <button id="tab-btn-editor" class="tab-btn" onclick="switchTab('editor')">💻 Editor</button>
         <button id="tab-btn-preview" class="tab-btn" onclick="switchTab('preview')">🎮 Hasil</button>
     </div>
 
     <div class="workspace">
         
-        <!-- Panel 1: Instruksi -->
         <div id="panel-instruction" class="panel instruction-panel active-tab">
-            <div class="panel-header">👋 Misi Kamu Hari Ini</div>
+            <div class="panel-header">📚 Pokok Bahasan Modul 2</div>
             <div class="instruction-content">
-                <h3>Melukis dengan Kode!</h3>
-                <p>Halo, Seniman Digital! 🖌️ Hari ini kita akan menggunakan JavaScript dan HTML Canvas untuk menggambar pemandangan malam hari lengkap dengan bulan, bintang, dan pepohonan.</p>
-                <p>Di editor kode, terdapat tantangan (🎯 TUGAS 2 - 20) yang menunggu untuk kamu selesaikan.</p>
+                <h3>Efisiensi Kode & Detail Visual</h3>
+                <p>Pada modul ini, kita belajar menulis kode yang lebih rapi, tidak berulang, dan menambahkan garis batas visual agar objek terlihat makin tegas!</p>
                 
+                <p><strong>Fokus Pembelajaran:</strong></p>
+                <ul>
+                    <li>✨ <strong>Detail Visual:</strong> Menggunakan <code>lineWidth</code>, <code>strokeStyle</code>, dan <code>stroke()</code>.</li>
+                    <li>🔄 <strong>Perulangan (For Loop):</strong> Menggambar ratusan objek tanpa mengulang kode.</li>
+                    <li>📦 <strong>Fungsi Modular:</strong> Membuat fungsi <code>gambarPohon(x, y)</code> sebagai cetakan objek.</li>
+                </ul>
+
                 <div class="task-box">
-                    <strong>🎯 Cara Mengerjakan:</strong><br>
-                    Cari tulisan <strong>🎯 TUGAS</strong> di dalam editor kode, baca instruksinya, lalu ubah nilai atau kodenya. Setelah itu, klik tombol "✨ Jalankan Kode" (atau tekan Ctrl+Enter) untuk melihat hasilnya!
+                    <strong>🎯 Misi Kamu:</strong><br>
+                    Cari label <strong>🎯 TUGAS MODUL 2</strong> di area editor kode, selesaikan instruksi tantangannya, lalu klik tombol <strong>"✨ Jalankan Kode"</strong>!
                 </div>
             </div>
         </div>
 
-        <!-- Panel 2: Editor Kode -->
         <div id="panel-editor" class="panel editor-panel">
             <div class="panel-header">
                 <span>💻 Area Coding</span>
                 <span style="font-size: 0.75rem; color: #94a3b8; font-weight: normal;">💾 Otomatis Tersimpan</span>
             </div>
 
-            <!-- Atribut Khusus Mengetik Nyaman di HP -->
             <textarea id="code-editor" spellcheck="false" autocorrect="off" autocapitalize="off" autocomplete="off"></textarea>
             
             <div class="action-bar">
@@ -346,10 +341,9 @@
             </div>
         </div>
 
-        <!-- Panel 3: Preview Hasil -->
         <div id="panel-preview" class="panel preview-panel">
             <div class="panel-header">
-                <span>🎮 Hasil Karyamu</span>
+                <span>🎮 Hasil Visual</span>
                 <button class="btn btn-fullscreen" onclick="toggleFullscreen()">⛶ Layar Penuh</button>
             </div>
             <iframe id="preview-frame"></iframe>
@@ -359,44 +353,34 @@
 
     <script>
         const editor = document.getElementById('code-editor');
-        const STORAGE_KEY = 'codequest_canvas_saved_code';
+        const STORAGE_KEY = 'codequest_modul2_saved_code';
 
-        // Templat Kode Bawaan Awal (Materi Pemandangan Malam)
         const defaultCode = `<!DOCTYPE html>
 <html lang="id">
 <head>
-    <title>Tugas Web 2 - [NAMA SISWA]</title>
-    
+    <title>Modul 2 - Efisiensi Kode & Detail Visual</title>
     <style>
-        /* 🎯 TUGAS 2: Ubah warna latar belakang (background) luar canvas. 
-           Coba ganti '#2c3e50' (biru gelap) menjadi 'black' atau '#111' */
         body {
-            background-color: #2c3e50; 
+            background-color: #0f172a;
             text-align: center;
             font-family: Arial, sans-serif;
+            color: white;
         }
 
-        /* 🎯 TUGAS 3: Ubah warna teks judul utama (h1) 
-           Ganti 'white' menjadi warna yang terang, misalnya 'yellow' atau 'cyan' */
-        h1 {
-            color: white; 
-        }
-
-        /* 🎯 TUGAS 4: Ubah warna dan ketebalan bingkai (border) canvas.
-           Ganti '2px solid white' menjadi '5px solid yellow' atau gayamu sendiri */
         canvas {
-            border: 2px solid white; 
-            margin-top: 20px;
-            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
-            max-width: 100%; /* Agar canvas tidak meluber di layar HP */
+            /* 🎯 TUGAS 1 (Detail Visual Canvas): 
+               Ubah tebal dan warna border canvas menggunakan CSS (misal: '4px solid #38bdf8') */
+            border: 2px solid white;
+            margin-top: 15px;
+            box-shadow: 0px 0px 25px rgba(56, 189, 248, 0.2);
+            max-width: 100%;
             height: auto;
         }
     </style>
 </head>
 <body>
 
-    <h1>Pemandangan Malam: [NAMA SISWA]</h1>
-
+    <h2>Karya Pemandangan Malam Modul 2</h2>
     <canvas id="kanvasMalam" width="600" height="400"></canvas>
 
     <script>
@@ -404,144 +388,132 @@
         const ctx = canvas.getContext('2d');
 
         // ==========================================
-        // BAGIAN 1: MENGGAMBAR LANGIT MALAM
+        // 1. LATAR BELAKANG LANGIT
         // ==========================================
-        
-        // 🎯 TUGAS 7: Ubah warna langit malam. 
-        // Ganti 'blue' menjadi 'midnightblue' atau '#000033'
-        ctx.fillStyle = 'blue'; 
+        ctx.fillStyle = '#090d16'; 
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 
         // ==========================================
-        // BAGIAN 2: MENGGAMBAR BULAN
+        // 2. DETAIL VISUAL: BULAN & CAHAYA (STROKE)
         // ==========================================
-        
         ctx.beginPath();
-        
-        // 🎯 TUGAS 8: Pindahkan posisi bulan ke kanan atas!
-        // Ganti X (150) menjadi 650, dan Y (150) menjadi 80
-        let posisiX_Bulan = 150;
-        let posisiY_Bulan = 150;
-        
-        // 🎯 TUGAS 9: Bulannya terlalu kecil! Ubah ukuran (radius) dari 30 menjadi 50
-        let radiusBulan = 30;
-        
+        let posisiX_Bulan = 480;
+        let posisiY_Bulan = 90;
+        let radiusBulan = 40;
+
         ctx.arc(posisiX_Bulan, posisiY_Bulan, radiusBulan, 0, Math.PI * 2);
-        
-        // 🎯 TUGAS 10: Beri warna bulan. Ganti 'gray' menjadi 'lightyellow' atau 'white'
-        ctx.fillStyle = 'gray'; 
+        ctx.fillStyle = '#fef08a'; 
         ctx.fill();
-        
-        // 🎯 TUGAS 11: Beri ketebalan garis tepi bulan (cahaya bulan). 
-        // Ubah lineWidth dari 0 menjadi 8
+
+        // 🎯 TUGAS 2 (Detail Visual - Garis Tepi/Cahaya Bulan):
+        // Aktifkan efek garis tepi bulan! 
+        // Ubah lineWidth menjadi 8 dan strokeStyle menjadi 'rgba(255, 255, 200, 0.4)'
         ctx.lineWidth = 0; 
-        
-        // 🎯 TUGAS 12: Ubah warna garis tepi bulan menjadi 'rgba(255, 255, 0, 0.5)' agar terlihat seperti efek cahaya
-        ctx.strokeStyle = 'black'; 
-        ctx.stroke();
+        ctx.strokeStyle = 'transparent'; 
+        ctx.stroke(); 
 
 
         // ==========================================
-        // BAGIAN 3: MENGGAMBAR BINTANG (LOOPING / PERULANGAN)
+        // 3. PERULANGAN (FOR LOOP): TABURAN BINTANG
         // ==========================================
-        
-        // 🎯 TUGAS 13: Ubah warna bintang dari 'red' menjadi 'white'
-        ctx.fillStyle = 'red';
+        ctx.fillStyle = '#ffffff';
 
-        // 🎯 TUGAS 14: Langitnya sepi! Mari buat banyak bintang.
-        // Ubah angka 10 di bawah ini menjadi 150 agar ada 150 bintang di langit!
+        // 🎯 TUGAS 3 (Efisiensi Kode - Loop Bintang):
+        // Bintangnya terlalu sedikit! Ubah 'jumlahBintang' dari 10 menjadi 150
+        // agar perulangan menggambar 150 bintang secara otomatis.
         let jumlahBintang = 10; 
 
         for (let i = 0; i < jumlahBintang; i++) {
             let x = Math.random() * canvas.width;
-            let y = Math.random() * (canvas.height - 100); 
+            let y = Math.random() * (canvas.height - 120);
+            let ukuran = Math.random() * 2.5; 
             
-            // 🎯 TUGAS 15: Bintangnya terlalu besar! Ubah ukuran maksimal menjadi 2 atau 3
-            let ukuranBintang = Math.random() * 8; 
-            
-            ctx.fillRect(x, y, ukuranBintang, ukuranBintang);
+            ctx.fillRect(x, y, ukuran, ukuran);
         }
 
 
         // ==========================================
-        // BAGIAN 4: MENGGAMBAR TANAH / BUKIT
+        // 4. DETAIL VISUAL: AREA TANAH / BUKIT
         // ==========================================
-        
-        // 🎯 TUGAS 16: Ubah warna tanah. Ganti 'brown' menjadi 'darkgreen' atau '#0b3303'
-        ctx.fillStyle = 'brown'; 
-        ctx.fillRect(0, canvas.height - 100, canvas.width, 100);
+        ctx.fillStyle = '#14532d'; 
+        ctx.fillRect(0, canvas.height - 80, canvas.width, 80);
+
+        // 🎯 TUGAS 4 (Detail Visual - Garis Pembatas Bukit):
+        // Beri garis pembatas terang di atas tanah agar kontras dengan langit.
+        // Ubah lineWidth menjadi 3, strokeStyle menjadi '#22c55e', lalu jalankan ctx.stroke()
+        ctx.beginPath();
+        ctx.moveTo(0, canvas.height - 80);
+        ctx.lineTo(canvas.width, canvas.height - 80);
+        ctx.lineWidth = 0;
+        ctx.strokeStyle = 'transparent';
+        ctx.stroke();
 
 
         // ==========================================
-        // BAGIAN 5: MEMBUAT FUNGSI POHON PINUS
+        // 5. FUNGSI MODULAR: CETAKAN POHON PINUS
         // ==========================================
         
-        // Ini adalah cetakan (Fungsi) untuk membuat pohon. 
+        // Fungsi Modular 'gambarPohon' agar kode tidak berulang
         function gambarPohon(x, y) {
-            // Batang pohon
-            ctx.fillStyle = '#3e2723'; // Warna coklat tua
-            ctx.fillRect(x - 10, y, 20, 40);
+            // Batang Pohon
+            ctx.fillStyle = '#422006';
+            ctx.fillRect(x - 8, y, 16, 35);
 
-            // Daun pohon (Segitiga)
-            // 🎯 TUGAS 17: Ubah warna daun! Ganti 'lightgreen' menjadi 'forestgreen'
-            ctx.fillStyle = 'lightgreen';
+            // Garis tepi batang (Detail Visual)
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = '#1c0a00';
+            ctx.strokeRect(x - 8, y, 16, 35);
+
+            // Daun Pohon (Segitiga)
             ctx.beginPath();
-            ctx.moveTo(x - 30, y);           // Kiri
-            ctx.lineTo(x, y - 60);           // Atas
-            ctx.lineTo(x + 30, y);           // Kanan
+            ctx.moveTo(x - 25, y);
+            ctx.lineTo(x, y - 55);
+            ctx.lineTo(x + 25, y);
+            ctx.closePath();
+            
+            ctx.fillStyle = '#15803d';
             ctx.fill();
+
+            // 🎯 TUGAS 5 (Detail Visual Daun):
+            // Beri garis pembatas daun! Ubah lineWidth jadi 2 dan strokeStyle jadi '#166534'
+            ctx.lineWidth = 0;
+            ctx.strokeStyle = 'transparent';
+            ctx.stroke();
         }
 
 
         // ==========================================
-        // BAGIAN 6: MENGGUNAKAN FUNGSI POHON
+        // 6. PEMANGGILAN FUNGSI MODULAR & PERULANGAN
         // ==========================================
         
-        // 🎯 TUGAS 18: Panggil fungsi pohon! 
-        // Hapus tanda garis miring ganda (//) di bawah ini agar pohonnya muncul
-        
-        // gambarPohon(150, canvas.height - 100);
-        // gambarPohon(250, canvas.height - 90);
-        
-        // 🎯 TUGAS 19: Hutan masih sepi! Ketik kode di bawah ini untuk menanam 3 pohon lagi.
-        // Contoh: gambarPohon(400, canvas.height - 100);
-        
-        // KETIK KODEMU DI SINI:
-        
+        // 🎯 TUGAS 6 (Pemanggilan Fungsi):
+        // Hapus tanda komentar (//) di bawah ini untuk memanggil fungsi gambarPohon
+        // gambarPohon(100, canvas.height - 80);
+        // gambarPohon(180, canvas.height - 75);
+        // gambarPohon(450, canvas.height - 80);
 
-        // ==========================================
-        // BAGIAN 7: MENAMBAHKAN TANDA TANGAN
-        // ==========================================
-
-        // 🎯 TUGAS 20: Tulis namamu di pojok kiri atas!
-        // Ubah warna 'black' jadi 'white', lalu ubah "Nama Siswa" jadi namamu.
-        ctx.fillStyle = 'black'; 
-        ctx.font = '20px Arial'; 
-        ctx.fillText("Karya: Nama Siswa", 20, 40);
+        // 🎯 TUGAS 7 (TANTANGAN: Kombinasi Perulangan + Fungsi):
+        // Tulis perulangan 'for' di bawah ini untuk menanam deretan pohon otomatis setiap jarak 70px!
+        // Petunjuk: for (let x = 40; x < canvas.width; x += 70) { gambarPohon(x, canvas.height - 80); }
 
     <\/script>
 </body>
 </html>`;
 
-        // Load Kode dari LocalStorage atau Gunakan Templat Bawaan
         function loadSavedCode() {
             const saved = localStorage.getItem(STORAGE_KEY);
             editor.value = saved ? saved : defaultCode;
         }
 
-        // Fungsi Memuat Hasil Kode ke dalam Iframe
         function runCode() {
             const htmlCode = editor.value;
             const iframe = document.getElementById('preview-frame');
             const blob = new Blob([htmlCode], { type: 'text/html' });
             iframe.src = URL.createObjectURL(blob);
-            
-            // Simpan Otomatis ke LocalStorage
             localStorage.setItem(STORAGE_KEY, htmlCode);
         }
 
-        // Tombol Reset Kode ke Bawaan Awal
         function resetCode() {
             if (confirm('Apakah kamu yakin ingin mengembalikan kode ke awal? Semua perubahanmu akan direset.')) {
                 editor.value = defaultCode;
@@ -550,7 +522,6 @@
             }
         }
 
-        // Eksekusi Tombol Jalankan Kode (+ Otomatis Pindah Tab di HP)
         function handleRunClick() {
             runCode();
             if (window.innerWidth <= 768) {
@@ -558,7 +529,6 @@
             }
         }
 
-        // Fungsi Navigasi Tab Khusus Layar HP
         function switchTab(tabName) {
             const buttons = document.querySelectorAll('.tab-btn');
             const panels = document.querySelectorAll('.panel');
@@ -575,38 +545,30 @@
             if (tabName === 'preview') runCode();
         }
 
-        // Fitur Layar Penuh (Fullscreen) untuk Panel Hasil
         function toggleFullscreen() {
             const previewPanel = document.getElementById('panel-preview');
             previewPanel.classList.toggle('fullscreen-mode');
         }
 
-        // Penanganan Keyboard (Indentasi Tab & Shortcut Ctrl+Enter)
         editor.addEventListener('keydown', function(e) {
-            // Fitur Indentasi Tombol Tab
             if (e.key === 'Tab') {
                 e.preventDefault();
                 const start = this.selectionStart;
                 const end = this.selectionEnd;
-
-                // Masukkan 2 spasi
                 this.value = this.value.substring(0, start) + "  " + this.value.substring(end);
                 this.selectionStart = this.selectionEnd = start + 2;
             }
 
-            // Shortcut Ctrl + Enter atau Cmd + Enter
             if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
                 e.preventDefault();
                 handleRunClick();
             }
         });
 
-        // Inisialisasi Pertama Saat Halaman Dimuat
         window.onload = function() {
             loadSavedCode();
             runCode();
         };
     </script>
-
 </body>
 </html>
