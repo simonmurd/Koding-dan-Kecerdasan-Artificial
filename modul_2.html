@@ -307,26 +307,28 @@
 
     <div class="workspace">
         
+        <!-- Panel 1: Instruksi & Materi -->
         <div id="panel-instruction" class="panel instruction-panel active-tab">
-            <div class="panel-header">📚 Pokok Bahasan Modul 2</div>
+            <div class="panel-header">📚 Pokok Bahasan Modul 2 (20 Tantangan)</div>
             <div class="instruction-content">
                 <h3>Efisiensi Kode & Detail Visual</h3>
-                <p>Pada modul ini, kita belajar menulis kode yang lebih rapi, tidak berulang, dan menambahkan garis batas visual agar objek terlihat makin tegas!</p>
+                <p>Selamat datang di Modul 2! Hari ini kamu akan merapikan kode, menambahkan batas garis visual, serta memanfaatkan fungsi modular dan perulangan.</p>
                 
-                <p><strong>Fokus Pembelajaran:</strong></p>
+                <p><strong>3 Pilar Utama Pembahasan:</strong></p>
                 <ul>
-                    <li>✨ <strong>Detail Visual:</strong> Menggunakan <code>lineWidth</code>, <code>strokeStyle</code>, dan <code>stroke()</code>.</li>
-                    <li>🔄 <strong>Perulangan (For Loop):</strong> Menggambar ratusan objek tanpa mengulang kode.</li>
-                    <li>📦 <strong>Fungsi Modular:</strong> Membuat fungsi <code>gambarPohon(x, y)</code> sebagai cetakan objek.</li>
+                    <li>🎨 <strong>Detail Visual Garis:</strong> Menggunakan <code>lineWidth</code>, <code>strokeStyle</code>, dan <code>stroke()</code>.</li>
+                    <li>🔄 <strong>Perulangan (For Loop):</strong> Menggambar ratusan objek secara efisien tanpa pengulangan kode.</li>
+                    <li>📦 <strong>Fungsi Modular:</strong> Membuat fungsi <code>gambarPohon(x, y)</code> sebagai cetakan reusable.</li>
                 </ul>
 
                 <div class="task-box">
                     <strong>🎯 Misi Kamu:</strong><br>
-                    Cari label <strong>🎯 TUGAS MODUL 2</strong> di area editor kode, selesaikan instruksi tantangannya, lalu klik tombol <strong>"✨ Jalankan Kode"</strong>!
+                    Selesaikan <strong>🎯 TUGAS 1 sampai TUGAS 20</strong> di editor kode secara berurutan, lalu klik <strong>"✨ Jalankan Kode"</strong> untuk melihat hasil karyamu!
                 </div>
             </div>
         </div>
 
+        <!-- Panel 2: Editor Kode -->
         <div id="panel-editor" class="panel editor-panel">
             <div class="panel-header">
                 <span>💻 Area Coding</span>
@@ -341,6 +343,7 @@
             </div>
         </div>
 
+        <!-- Panel 3: Preview Hasil -->
         <div id="panel-preview" class="panel preview-panel">
             <div class="panel-header">
                 <span>🎮 Hasil Visual</span>
@@ -353,26 +356,33 @@
 
     <script>
         const editor = document.getElementById('code-editor');
-        const STORAGE_KEY = 'codequest_modul2_saved_code';
+        const STORAGE_KEY = 'codequest_modul2_20tugas_saved_code';
 
         const defaultCode = `<!DOCTYPE html>
 <html lang="id">
 <head>
-    <title>Modul 2 - Efisiensi Kode & Detail Visual</title>
+    <title>Modul 2 - 20 Tantangan Canvas</title>
     <style>
+        /* 🎯 TUGAS 1: Ubah latar belakang body halaman web.
+           Ganti '#0f172a' menjadi '#1e1b4b' (indigo gelap) atau warna pilihanmu */
         body {
             background-color: #0f172a;
             text-align: center;
             font-family: Arial, sans-serif;
+        }
+
+        /* 🎯 TUGAS 2: Ubah warna teks judul h2.
+           Ganti 'white' menjadi 'cyan' atau '#38bdf8' */
+        h2 {
             color: white;
         }
 
+        /* 🎯 TUGAS 3 (Detail Visual Canvas): 
+           Beri border canvas yang lebih tebal! Ubah '2px solid white' menjadi '4px solid #38bdf8' */
         canvas {
-            /* 🎯 TUGAS 1 (Detail Visual Canvas): 
-               Ubah tebal dan warna border canvas menggunakan CSS (misal: '4px solid #38bdf8') */
             border: 2px solid white;
-            margin-top: 15px;
-            box-shadow: 0px 0px 25px rgba(56, 189, 248, 0.2);
+            margin-top: 10px;
+            box-shadow: 0px 0px 25px rgba(56, 189, 248, 0.3);
             max-width: 100%;
             height: auto;
         }
@@ -380,7 +390,7 @@
 </head>
 <body>
 
-    <h2>Karya Pemandangan Malam Modul 2</h2>
+    <h2>Pemandangan Malam Modul 2 - [NAMA SISWA]</h2>
     <canvas id="kanvasMalam" width="600" height="400"></canvas>
 
     <script>
@@ -388,79 +398,102 @@
         const ctx = canvas.getContext('2d');
 
         // ==========================================
-        // 1. LATAR BELAKANG LANGIT
+        // BAGIAN 1: LATAR BELAKANG LANGIT
         // ==========================================
+        
+        // 🎯 TUGAS 4: Ubah warna langit malam! 
+        // Ganti '#090d16' menjadi '#030712' atau 'midnightblue'
         ctx.fillStyle = '#090d16'; 
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 
         // ==========================================
-        // 2. DETAIL VISUAL: BULAN & CAHAYA (STROKE)
+        // BAGIAN 2: BULAN & CAHAYA (DETAIL VISUAL: STROKE & LINEWIDTH)
         // ==========================================
         ctx.beginPath();
-        let posisiX_Bulan = 480;
-        let posisiY_Bulan = 90;
-        let radiusBulan = 40;
+        
+        // 🎯 TUGAS 5: Atur posisi X bulan ke sebelah kanan atas (Ubah 150 jadi 480)
+        let posisiX_Bulan = 150;
+        
+        // 🎯 TUGAS 6: Atur posisi Y bulan agak ke atas (Ubah 200 jadi 90)
+        let posisiY_Bulan = 200;
+        
+        // 🎯 TUGAS 7: Perbesar radius bulan dari 20 menjadi 45
+        let radiusBulan = 20;
 
         ctx.arc(posisiX_Bulan, posisiY_Bulan, radiusBulan, 0, Math.PI * 2);
-        ctx.fillStyle = '#fef08a'; 
+        
+        // 🎯 TUGAS 8: Ubah warna isi bulan dari 'gray' menjadi kuning terang ('#fef08a')
+        ctx.fillStyle = 'gray'; 
         ctx.fill();
 
-        // 🎯 TUGAS 2 (Detail Visual - Garis Tepi/Cahaya Bulan):
-        // Aktifkan efek garis tepi bulan! 
-        // Ubah lineWidth menjadi 8 dan strokeStyle menjadi 'rgba(255, 255, 200, 0.4)'
+        // 🎯 TUGAS 9 (Detail Visual): Beri ketebalan garis tepi/cahaya bulan!
+        // Ubah lineWidth dari 0 menjadi 8
         ctx.lineWidth = 0; 
+        
+        // 🎯 TUGAS 10 (Detail Visual): Beri warna garis tepi cahaya bulan.
+        // Ubah 'transparent' menjadi 'rgba(254, 240, 138, 0.4)'
         ctx.strokeStyle = 'transparent'; 
-        ctx.stroke(); 
+        
+        // 🎯 TUGAS 11: Aktifkan garis tepi bulan dengan memanggil fungsi stroke!
+        // (Hapus tanda garis miring ganda // di bawah ini)
+        // ctx.stroke();
 
 
         // ==========================================
-        // 3. PERULANGAN (FOR LOOP): TABURAN BINTANG
+        // BAGIAN 3: PERULANGAN (FOR LOOP) BINTANG
         // ==========================================
-        ctx.fillStyle = '#ffffff';
+        
+        // 🎯 TUGAS 12: Ubah warna bintang dari 'red' menjadi 'white'
+        ctx.fillStyle = 'red';
 
-        // 🎯 TUGAS 3 (Efisiensi Kode - Loop Bintang):
-        // Bintangnya terlalu sedikit! Ubah 'jumlahBintang' dari 10 menjadi 150
-        // agar perulangan menggambar 150 bintang secara otomatis.
-        let jumlahBintang = 10; 
+        // 🎯 TUGAS 13 (Efisiensi Kode - Loop): Langit masih sepi. 
+        // Ubah jumlahBintang dari 5 menjadi 150 agar loop menggambar 150 bintang!
+        let jumlahBintang = 5; 
 
         for (let i = 0; i < jumlahBintang; i++) {
             let x = Math.random() * canvas.width;
-            let y = Math.random() * (canvas.height - 120);
-            let ukuran = Math.random() * 2.5; 
+            let y = Math.random() * (canvas.height - 120); 
             
-            ctx.fillRect(x, y, ukuran, ukuran);
+            // 🎯 TUGAS 14: Ubah ukuran bintang maksimal dari 10 menjadi 2.5
+            let ukuranBintang = Math.random() * 10; 
+            
+            ctx.fillRect(x, y, ukuranBintang, ukuranBintang);
         }
 
 
         // ==========================================
-        // 4. DETAIL VISUAL: AREA TANAH / BUKIT
+        // BAGIAN 4: TANAH & GARIS PEMBATAS (DETAIL VISUAL)
         // ==========================================
-        ctx.fillStyle = '#14532d'; 
+        
+        // 🎯 TUGAS 15: Ubah warna tanah dari 'brown' menjadi hijau tua '#14532d'
+        ctx.fillStyle = 'brown'; 
         ctx.fillRect(0, canvas.height - 80, canvas.width, 80);
 
-        // 🎯 TUGAS 4 (Detail Visual - Garis Pembatas Bukit):
-        // Beri garis pembatas terang di atas tanah agar kontras dengan langit.
-        // Ubah lineWidth menjadi 3, strokeStyle menjadi '#22c55e', lalu jalankan ctx.stroke()
+        // Menambahkan garis pembatas bukit (Detail Visual)
         ctx.beginPath();
         ctx.moveTo(0, canvas.height - 80);
         ctx.lineTo(canvas.width, canvas.height - 80);
+        
+        // 🎯 TUGAS 16 (Detail Visual): Beri tebal garis pembatas tanah (Ubah 0 jadi 3)
         ctx.lineWidth = 0;
+        
+        // 🎯 TUGAS 17 (Detail Visual): Beri warna garis terang '#22c55e' lalu aktifkan stroke!
         ctx.strokeStyle = 'transparent';
         ctx.stroke();
 
 
         // ==========================================
-        // 5. FUNGSI MODULAR: CETAKAN POHON PINUS
+        // BAGIAN 5: FUNGSI MODULAR (gambarPohon)
         // ==========================================
         
-        // Fungsi Modular 'gambarPohon' agar kode tidak berulang
+        // Cetakan Fungsi Reusable
         function gambarPohon(x, y) {
             // Batang Pohon
             ctx.fillStyle = '#422006';
             ctx.fillRect(x - 8, y, 16, 35);
 
-            // Garis tepi batang (Detail Visual)
+            // Garis tepi batang
             ctx.lineWidth = 1;
             ctx.strokeStyle = '#1c0a00';
             ctx.strokeRect(x - 8, y, 16, 35);
@@ -475,8 +508,8 @@
             ctx.fillStyle = '#15803d';
             ctx.fill();
 
-            // 🎯 TUGAS 5 (Detail Visual Daun):
-            // Beri garis pembatas daun! Ubah lineWidth jadi 2 dan strokeStyle jadi '#166534'
+            // 🎯 TUGAS 18 (Detail Visual Daun): 
+            // Atur ketebalan garis tepi daun (lineWidth = 2) dan warnanya (strokeStyle = '#166534')
             ctx.lineWidth = 0;
             ctx.strokeStyle = 'transparent';
             ctx.stroke();
@@ -484,16 +517,16 @@
 
 
         // ==========================================
-        // 6. PEMANGGILAN FUNGSI MODULAR & PERULANGAN
+        // BAGIAN 6: PEMANGGILAN FUNGSI MODULAR & FOR LOOP
         // ==========================================
         
-        // 🎯 TUGAS 6 (Pemanggilan Fungsi):
-        // Hapus tanda komentar (//) di bawah ini untuk memanggil fungsi gambarPohon
+        // 🎯 TUGAS 19 (Pemanggilan Fungsi Modular):
+        // Hapus tanda // di bawah ini untuk menanam 3 pohon modular manual!
         // gambarPohon(100, canvas.height - 80);
         // gambarPohon(180, canvas.height - 75);
-        // gambarPohon(450, canvas.height - 80);
+        // gambarPohon(500, canvas.height - 80);
 
-        // 🎯 TUGAS 7 (TANTANGAN: Kombinasi Perulangan + Fungsi):
+        // 🎯 TUGAS 20 (TANTANGAN: Kombinasi Perulangan + Fungsi):
         // Tulis perulangan 'for' di bawah ini untuk menanam deretan pohon otomatis setiap jarak 70px!
         // Petunjuk: for (let x = 40; x < canvas.width; x += 70) { gambarPohon(x, canvas.height - 80); }
 
