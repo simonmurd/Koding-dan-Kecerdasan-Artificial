@@ -383,8 +383,10 @@
             </div>
 
             <div class="character-stage">
-                <img class="avatar mount-img" src="https://api.iconify.design/noto:horse.svg" alt="Mount">
-                <img class="avatar hero-img" id="heroImg" src="https://api.iconify.design/game-icons:wizard-face.svg?color=%23007bff" alt="Hero">
+                <!-- Icon Kuda Diperbaiki -->
+                <img class="avatar mount-img" src="https://api.iconify.design/noto/horse.svg" alt="Mount">
+                <!-- Icon Hero Diperbaiki -->
+                <img class="avatar hero-img" id="heroImg" src="https://api.iconify.design/game-icons/wizard-face.svg?color=%23007bff" alt="Hero">
             </div>
 
             <div class="hero-overlay-stats">
@@ -441,10 +443,10 @@
             btnEl.classList.add('selected');
             const img = document.getElementById('heroImg');
             
-            // Icon hero dengan penyesuaian warna aksen biru (%23007bff)
-            if(kelasBaru === 'Mage') img.src = "https://api.iconify.design/game-icons:wizard-face.svg?color=%23007bff";
-            else if(kelasBaru === 'Warrior') img.src = "https://api.iconify.design/game-icons:knight-banner.svg?color=%23007bff";
-            else img.src = "https://api.iconify.design/game-icons:ninja-head.svg?color=%23007bff";
+            // Icon hero dengan penyesuaian warna aksen biru (%23007bff) - URL Diperbaiki
+            if(kelasBaru === 'Mage') img.src = "https://api.iconify.design/game-icons/wizard-face.svg?color=%23007bff";
+            else if(kelasBaru === 'Warrior') img.src = "https://api.iconify.design/game-icons/knight-banner.svg?color=%23007bff";
+            else img.src = "https://api.iconify.design/game-icons/ninja-head.svg?color=%23007bff";
         }
 
         function cetakLog(teks) {
