@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LKPD Interaktif: Simulator Futuristik</title>
+    <title>LKPD Interaktif: Modul 06 Diner Dash / Cake Mania</title>
     <style>
-        /* Import Font Modern & Minimalis */
+        /* Import Font Modern, Minimalis & Futuristik */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&family=Fira+Code:wght@400;500&display=swap');
 
         * {
@@ -39,7 +39,7 @@
             font-family: 'Space Grotesk', sans-serif;
             font-size: 1.5rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #007bff, #00d2ff);
+            background: linear-gradient(135deg, #ff0055, #ffaa00);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             letter-spacing: -0.5px;
@@ -47,14 +47,14 @@
 
         .badge {
             background: #ffffff;
-            color: #007bff;
-            border: 1px solid #00d2ff;
+            color: #e65100;
+            border: 1px solid #ff9800;
             padding: 8px 20px;
             border-radius: 30px;
             font-size: 0.85rem;
             font-family: 'Space Grotesk', sans-serif;
             font-weight: 700;
-            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.1);
+            box-shadow: 0 4px 10px rgba(255, 152, 0, 0.15);
             letter-spacing: 0.5px;
         }
 
@@ -66,6 +66,17 @@
             overflow: hidden;
             background-image: radial-gradient(#dee2e6 1px, transparent 1px);
             background-size: 20px 20px;
+        }
+
+        /* Responsive Workspace untuk Mobile */
+        @media (max-width: 768px) {
+            .workspace {
+                flex-direction: column;
+                overflow-y: auto;
+            }
+            .panel {
+                min-height: 400px;
+            }
         }
 
         .panel {
@@ -80,8 +91,8 @@
         }
 
         .panel:hover {
-            box-shadow: 0 12px 40px rgba(0, 123, 255, 0.08);
-            border-color: #80bdff;
+            box-shadow: 0 12px 40px rgba(255, 152, 0, 0.12);
+            border-color: #ffb74d;
         }
 
         .panel-header {
@@ -94,6 +105,7 @@
             color: #495057;
             display: flex;
             align-items: center;
+            justify-content: space-between;
             gap: 8px;
         }
 
@@ -111,7 +123,7 @@
 
         .instruction-content h3 {
             margin-bottom: 15px;
-            color: #007bff;
+            color: #e65100;
             font-family: 'Space Grotesk', sans-serif;
         }
 
@@ -120,8 +132,8 @@
         }
 
         .task-box {
-            background: rgba(0, 123, 255, 0.05);
-            border-left: 4px solid #007bff;
+            background: rgba(255, 152, 0, 0.08);
+            border-left: 4px solid #ff9800;
             border-radius: 0 8px 8px 0;
             padding: 15px;
             margin-top: 20px;
@@ -152,7 +164,7 @@
 
         textarea:focus {
             background-color: #ffffff;
-            box-shadow: inset 0 0 0 2px #007bff;
+            box-shadow: inset 0 0 0 2px #ff9800;
         }
 
         .action-bar {
@@ -164,7 +176,7 @@
         }
 
         button.btn-run {
-            background: linear-gradient(135deg, #007bff 0%, #00d2ff 100%);
+            background: linear-gradient(135deg, #ff9800 0%, #ff0055 100%);
             color: #ffffff;
             border: none;
             padding: 10px 25px;
@@ -174,16 +186,50 @@
             font-size: 0.95rem;
             cursor: pointer;
             transition: all 0.2s ease;
-            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
         }
 
         button.btn-run:hover {
-            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+            box-shadow: 0 6px 20px rgba(255, 0, 85, 0.35);
             transform: translateY(-2px);
         }
 
         .preview-panel {
             flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Pengaturan saat mode Fullscreen aktif */
+        .preview-panel:fullscreen {
+            background: #ffffff;
+            border-radius: 0;
+            border: none;
+        }
+        .preview-panel:-webkit-full-screen {
+            background: #ffffff;
+        }
+
+        /* Tombol Fullscreen */
+        .btn-fullscreen {
+            background: transparent;
+            color: #495057;
+            border: 1px solid #ced4da;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .btn-fullscreen:hover {
+            background: #e9ecef;
+            color: #212529;
+            border-color: #adb5bd;
         }
 
         iframe {
@@ -203,311 +249,396 @@
 
     <header>
         <h1>⚡ CodeQuest: NEXUS</h1>
-        <div class="badge">🚀 Misi: Simulator (Modul 5)</div>
+        <div class="badge">⏱️ Modul 06: Diner Dash / Cake Mania (Time-Management & Interval Logic)</div>
     </header>
 
     <div class="workspace">
         
         <div class="panel instruction-panel">
-            <div class="panel-header">📜 Modul Instruksi</div>
+            <div class="panel-header" style="justify-content: flex-start;">📜 Modul Instruksi</div>
             <div class="instruction-content">
-                <h3>Sistem Inisiasi Simulator!</h3>
-                <p>Halo, Operator! ⚡ Hari ini kita akan belajar menggunakan Variabel, Logika, dan Perulangan dengan visualisasi sistem karakter.</p>
-                <p>Di antarmuka kode sebelah kanan, kamu dapat mengedit kode HTML/CSS/JS untuk menyesuaikan antarmuka sistem.</p>
+                <h3>🍰 Cake Mania / Diner Dash Engine!</h3>
+                <p>Selamat datang di <strong>Modul 06</strong>, Game Developer! 🍰 Game bergenre <em>Time-Management</em> ini membawa kamu untuk memahami konsep pemrograman berbasis waktu (<em>temporal/timer logic</em>) dan manajemen status dinamis (<em>dynamic state management</em>) yang sangat relevan dengan aplikasi dunia nyata (seperti sistem antrean atau dasbor kasir modern).</p>
+                <p>Misi kamu adalah menyelesaikan <strong>20 Tugas Terstruktur</strong> pada editor kode di bagian tengah untuk mengaktifkan sistem timer kesabaran pelanggan, alur pemesanan makanan, proses memasak di dapur, hingga pengumpulan poin/uang!</p>
                 
                 <div class="task-box">
                     <strong>🎯 Cara Mengerjakan:</strong><br>
-                    Sesuaikan kode pada editor sebelah kanan, lalu klik tombol <strong>"✨ Sinkronisasi Kode"</strong> di bawah editor untuk memperbarui tampilan pada panel <strong>Output Sistem</strong>.
+                    Cari petunjuk <strong>🎯 TUGAS 1</strong> sampai <strong>TUGAS 20</strong> pada editor kode. Baca instruksi komentar, lalu isi nilai atau hapus tanda tanya (<code>'?'</code>) dengan nilai atau ekspresi JavaScript yang tepat.<br><br>
+                    Setelah selesai, klik <strong>"✨ Sinkronisasi Kode"</strong>. Kamu dapat mencoba langsung simulasi restoran Cake Mania pada panel output kanan!
+                </div>
+
+                <div style="margin-top:20px; font-size:0.85rem; background:#f8f9fa; padding:12px; border-radius:8px; border-left:3px solid #ff9800;">
+                    <strong>💡 Konsep Kunci Modul 06:</strong><br>
+                    • <strong>Interval Management (<code>setInterval</code>):</strong> Mengurangi tingkat kesabaran pelanggan secara berkala setiap detik secara real-time.<br>
+                    • <strong>Timeout Delay (<code>setTimeout</code>):</strong> Mensimulasikan durasi waktu proses memasak kue/makanan di dapur.<br>
+                    • <strong>Event-Driven Interactions (<code>addEventListener</code>):</strong> Merespons klik pemain pada meja restoran sesuai alur layanan.<br>
+                    • <strong>State Machine Berjenjang:</strong> Perubahan status pelanggan dari <code>WAITING_ORDER</code> ➔ <code>COOKING</code> ➔ <code>READY_TO_SERVE</code> ➔ <code>EATING</code> / <code>ANGRY</code>.
                 </div>
             </div>
         </div>
 
         <div class="panel editor-panel">
-            <div class="panel-header">💻 Terminal Interface</div>
+            <div class="panel-header" style="justify-content: flex-start;">💻 Terminal Interface</div>
 <textarea id="code-editor" spellcheck="false" wrap="off">
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travian Hero Simulator - Kunci Solusi</title>
     
+    <!-- 🎯 TUGAS 1: Ubah judul tab browser di bawah ini dengan namamu -->
+    <title>Modul 06 - Cake Mania Time Management [NAMA SISWA]</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        
         body {
-            background-color: #ffffff;
-            font-family: Tahoma, Arial, sans-serif;
-            color: #333;
-            padding: 20px;
+            font-family: 'Space Grotesk', sans-serif;
+            /* 🎯 TUGAS 2: Ganti warna background dari #1e1e24 menjadi warna lain, misal: '#181820' */
+            background-color: #1e1e24;
+            color: #ffffff;
             display: flex;
             flex-direction: column;
             align-items: center;
-        }
-
-        /* BINGKAI UTAMA TRAVIAN */
-        .travian-frame {
-            width: 100%;
-            max-width: 500px;
-            background: #ffffff;
-            display: flex;
-            gap: 15px;
-        }
-
-        /* AREA KIRI: HERO & KUDA */
-        .hero-section {
-            width: 45%;
-            position: relative;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            height: 300px;
+            justify-content: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            padding: 15px;
+            box-sizing: border-box;
         }
         
-        .mount-img {
-            position: absolute;
-            left: -10px;
-            bottom: 0;
-            height: 250px;
-            z-index: 1;
-        }
-        
-        .hero-img {
-            position: absolute;
-            right: 10px;
-            bottom: 0;
-            height: 280px;
-            z-index: 2;
-        }
-
-        /* AREA KANAN: INVENTORY GRID 3x3 */
-        .inventory-section {
-            width: 55%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 4px;
-            background-color: #d4d4d4;
-            padding: 4px;
-            border: 1px solid #b0b0b0;
-        }
-
-        .slot {
-            aspect-ratio: 1;
-            background-color: #ffffff;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid #a0a0a0;
-            box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
-            font-size: 2rem;
-        }
-
-        .qty {
-            position: absolute;
-            top: 2px;
-            right: 2px;
-            background-color: #b0b0b0;
-            color: white;
-            font-size: 10px;
-            padding: 1px 4px;
-            font-weight: bold;
-        }
-
-        /* MENU TRANSAKSI BAWAH */
-        .trade-menu {
+        #gameHeader {
             display: flex;
             justify-content: space-between;
-            margin-top: 10px;
-            padding: 5px;
-            background: #f4f4f4;
-            border: 1px solid #d4d4d4;
-            border-radius: 3px;
-        }
-
-        .trade-menu a {
-            color: #719A15;
-            text-decoration: none;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
-        .trade-menu a:hover {
-            color: #5B7A11;
-        }
-        
-        .trade-menu a::before {
-            content: "▶ ";
-            font-size: 9px;
-        }
-
-        /* LAYAR OUTPUT (LOG) - TUGAS 2 */
-        #layarOutput {
-            margin-top: 20px;
             width: 100%;
-            max-width: 500px;
-            background: #e0f7fa;
-            border: 1px solid #006064;
-            padding: 10px;
-            font-size: 12px;
-            height: 120px;
-            overflow-y: auto;
+            max-width: 420px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            padding: 12px 16px;
+            box-sizing: border-box;
+            background: #2b2b36;
+            border-radius: 10px;
+            border: 1px solid #3d3d4e;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .table-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .table-card {
+            background: #2b2b36;
+            border: 2px solid #3d3d4e;
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 150px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .table-card:hover {
+            border-color: #ff9800;
+            transform: translateY(-2px);
+        }
+
+        .table-card.active {
+            border-color: #ffcc00;
+            background: #343444;
+        }
+
+        .table-number {
+            font-size: 0.8rem;
+            color: #888;
+            align-self: flex-start;
+        }
+
+        .customer-avatar {
+            font-size: 2.2rem;
+            margin: 8px 0;
+        }
+
+        .status-badge {
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .status-WAITING_ORDER { background: #ff9800; color: #000; }
+        .status-COOKING { background: #00bcd4; color: #000; }
+        .status-READY_TO_SERVE { background: #4caf50; color: #fff; }
+        .status-EATING { background: #e91e63; color: #fff; }
+        .status-EMPTY { background: #424242; color: #aaa; }
+
+        .patience-bar-bg {
+            width: 100%;
+            height: 8px;
+            background: #444;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .patience-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4caf50, #ffeb3b, #f44336);
+            width: 100%;
+            transition: width 0.3s linear;
+        }
+
+        .btn-start {
+            margin-top: 20px;
+            padding: 12px 28px;
+            /* 🎯 TUGAS 3: Ganti warna tombol dari #ff9800 menjadi warna favoritmu */
+            background-color: #ff9800;
+            border: none;
+            border-radius: 25px;
+            color: #ffffff;
+            font-size: 1rem;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(255, 152, 0, 0.4);
+            transition: all 0.2s;
+        }
+
+        .btn-start:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(255, 152, 0, 0.6);
+        }
+
+        .btn-start:active {
+            transform: translateY(1px);
         }
     </style>
 </head>
 <body>
 
-    <!-- UI KLASIK TRAVIAN -->
-    <div class="travian-frame">
-        
-        <!-- Area Kiri: Karakter -->
-        <div class="hero-section">
-            <img class="mount-img" src="https://api.iconify.design/game-icons/horse-head.svg?color=%234e342e" alt="Kuda">
-            <img class="hero-img" id="heroImg" src="https://api.iconify.design/game-icons/barbute.svg?color=%233e4147" alt="Hero">
-        </div>
-
-        <!-- Area Kanan: Grid 3x3 - TUGAS 3 & 4 -->
-        <div class="inventory-section">
-            <div class="grid-container">
-                <!-- Baris 1 -->
-                <div class="slot"><span class="qty">200</span>🌿</div>
-                <div class="slot"><span class="qty">1</span>🪣</div>
-                <div class="slot"><span class="qty">1</span>📖</div>
-                <!-- Baris 2 -->
-                <div class="slot"><span class="qty">1</span>🪣</div>
-                <div class="slot"><span class="qty">10</span>🪤</div>
-                <div class="slot"></div>
-                <!-- Baris 3 -->
-                <div class="slot"><span class="qty">1</span>⚔️</div>
-                <div class="slot"><span class="qty">1</span>🛡️</div>
-                <div class="slot"><span class="qty">5</span>🧪</div>
-            </div>
-            
-            <div class="trade-menu">
-                <a href="#">Buy items.</a>
-                <a href="#">Sell items.</a>
-            </div>
-        </div>
-
+    <!-- 🎯 TUGAS 4: Ganti nama judul game H2 di bawah ini -->
+    <h2>🍰 Cake Mania: Time Management Engine</h2>
+    
+    <div id="gameHeader">
+        <!-- 🎯 TUGAS 5: Setel teks nama pemilik / target resto pada header UI -->
+        <span>Diner: <strong style="color:#ffcc00;">Cake Shop [NAMA SISWA]</strong></span>
+        <span>Skor Uang: <strong style="color:#ffcc00;">Rp <span id="moneyVal">0</span></strong></span>
+        <span>Pelanggan Marah: <strong style="color:#ff4d4d;"><span id="angryVal">0</span> / 3</strong></span>
     </div>
 
-    <!-- Kotak Log Simulasi -->
-    <div id="layarOutput">
-        <em>Log Sistem Aktif...</em><br>
+    <div class="table-grid" id="tablesContainer">
+        <!-- Meja-meja Restoran akan di-render secara dinamis via JavaScript -->
     </div>
 
-    <!-- TUGAS 20: Tombol Aksi Interaktif -->
-    <button onclick="naikLevel()" style="margin-top: 10px; padding: 8px 15px; cursor: pointer; font-weight: bold;">
-        ⚡ Level Up!
-    </button>
+    <button class="btn-start" onclick="startGame()">▶ Mulai Shift Restoran</button>
 
     <script>
-        function cetakLog(teks) {
-            const layar = document.getElementById('layarOutput');
-            layar.innerHTML += teks + "<br>";
-            layar.scrollTop = layar.scrollHeight;
+        // ==========================================
+        // 1. STATE MANAGEMENT DENGAN STRUKTUR DATA RESTORAN
+        // ==========================================
+        const gameState = {
+            // 🎯 TUGAS 6: Setel modal/skor awal uang pemain (money) menjadi 0
+            money: '?',
+            
+            // 🎯 TUGAS 7: Setel jumlah pelanggan marah awal (angryCount) menjadi 0
+            angryCount: '?',
+            
+            maxAngry: 3,
+            gameActive: false,
+            activeCustomers: []
+        };
+
+        // Fungsi Pembuat Objek Pelanggan Baru
+        function createCustomer(tableId) {
+            return {
+                id: tableId,
+                order: 'Cake',
+                
+                // 🎯 TUGAS 8: Setel nilai kesabaran awal pelanggan (patience) menjadi 100
+                patience: '?',
+                
+                // 🎯 TUGAS 9: Setel status awal pelanggan saat baru datang menjadi 'WAITING_ORDER'
+                status: '?' // WAITING_ORDER, COOKING, READY_TO_SERVE, EATING, ANGRY
+            };
         }
 
-        // BAGIAN 2: VARIABEL & OPERATOR JAVASCRIPT
-        // Tugas 1: Identitas Hero
-        let namaHero = "Ksatria Garuda";
-        let level = 10;
+        // ==========================================
+        // 2. LOGIKA TIMER & INTERVAL MANAGEMENT (KESABARAN)
+        // ==========================================
+        function startCustomerTimer(customer) {
+            const timerInterval = setInterval(() => {
+                // Jika game berhenti atau pelanggan sedang makan/marah, hentikan timer
+                if (!gameState.gameActive || customer.status === 'EATING' || customer.status === 'ANGRY') {
+                    // 🎯 TUGAS 10: Hentikan timer pelanggan dengan memanggil clearInterval(timerInterval)
+                    // Ubah '?' menjadi: clearInterval(timerInterval)
+                    '?';
+                    return;
+                }
 
-        // Tugas 5: Sistem HP
-        let hp = 80;
-        let maxHp = 100;
-        cetakLog(`HP Hero: ${hp}/${maxHp}`);
+                // 🎯 TUGAS 11: Kurangi kesabaran pelanggan sebesar 5 poin setiap interval
+                // Ubah '?' menjadi: 5
+                customer.patience -= '?';
 
-        // Tugas 6: Kalkulator Item
-        let salep = 191;
-        let buku = 1;
-        let kandang = 7;
-        let totalItem = salep + buku + kandang;
-        cetakLog(`Total Item: ${totalItem}`);
+                // 🎯 TUGAS 12: Cek percabangan jika kesabaran pelanggan habis (patience <= 0)
+                // Ubah '?' menjadi: 0
+                if (customer.patience <= '?') {
+                    // 🎯 TUGAS 13: Ubah status pelanggan menjadi 'ANGRY' saat kesabaran habis
+                    // Ubah '?' menjadi: 'ANGRY'
+                    customer.status = '?';
+                    
+                    clearInterval(timerInterval);
+                    handleCustomerAngry(customer);
+                }
 
-        // Tugas 7: Atribut Kekuatan
-        let kekuatanDasar = 50;
-        let bonusSenjata = 15;
-        let totalKekuatan = kekuatanDasar + bonusSenjata;
-        cetakLog(`Total Kekuatan Tempur: ${totalKekuatan}`);
-
-        // Tugas 8: Status Kuda
-        let naikKuda = true;
-        cetakLog(`Status Berkuda: ${naikKuda}`);
-
-        // BAGIAN 3: LOGIKA & PERCABANGAN (IF - ELSE)
-        // Tugas 9: Cek Kondisi HP
-        if (hp < 30) {
-            cetakLog("⚠️ Peringatan: Darah Hero Kritis!");
-        } else {
-            cetakLog("Hero dalam kondisi fit.");
+                updateUI();
+            // 🎯 TUGAS 14: Setel interval waktu pengatur kesabaran menjadi 1000 milidetik (1 detik)
+            // Ubah '?' menjadi: 1000
+            }, '?');
         }
 
-        // Tugas 10: Persyaratan Level
-        if (level >= 10) {
-            cetakLog("Hero siap masuk ke Dungeon VIP");
-        } else {
-            cetakLog("Level belum mencukupi");
+        function handleCustomerAngry(customer) {
+            gameState.angryCount++;
+            updateUI();
+            
+            if (gameState.angryCount >= gameState.maxAngry) {
+                gameState.gameActive = false;
+                alert('💥 Game Over! Terlalu banyak pelanggan yang marah dan meninggalkan restoran!');
+            }
         }
 
-        // Tugas 11: Sistem Penggunaan Salep
-        if (hp < 100 && salep > 0) {
-            salep -= 1;
-            hp += 20;
-            cetakLog(`Salep digunakan! HP sekarang: ${hp}, sisa salep: ${salep}`);
+        // ==========================================
+        // 3. PROSES MEMASAK DI DAPUR (TIMEOUT MANAGEMENT)
+        // ==========================================
+        function triggerCookingProcess(customer) {
+            updateUI();
+            
+            // Simulasikan durasi memasak di dapur selama 3 detik
+            setTimeout(() => {
+                if (customer.status === 'COOKING' && gameState.gameActive) {
+                    // 🎯 TUGAS 15: Ubah status pelanggan menjadi 'READY_TO_SERVE' setelah makanan siap
+                    // Ubah '?' menjadi: 'READY_TO_SERVE'
+                    customer.status = '?';
+                    updateUI();
+                }
+            }, 3000);
         }
 
-        // Tugas 12: Cek Peralatan
-        let punyaEmber = true;
-        if (punyaEmber) {
-            cetakLog("Hero membawa Ember Petualang");
+        // ==========================================
+        // 4. EVENT-DRIVEN INTERACTION (KLIK MEJA / PELANGGAN)
+        // ==========================================
+        function handleTableClick(tableId) {
+            if (!gameState.gameActive) return;
+
+            let customer = gameState.activeCustomers.find(c => c.id === tableId);
+
+            // Jika meja kosong, panggil pelanggan baru
+            if (!customer) {
+                customer = createCustomer(tableId);
+                gameState.activeCustomers.push(customer);
+                startCustomerTimer(customer);
+                updateUI();
+                return;
+            }
+
+            // 🎯 TUGAS 16: Cek percabangan jika status pelanggan sama dengan 'WAITING_ORDER'
+            // Ubah '?' menjadi: 'WAITING_ORDER'
+            if (customer.status === '?') {
+                // 🎯 TUGAS 17: Ubah status pelanggan menjadi 'COOKING' untuk memicu proses memasak
+                // Ubah '?' menjadi: 'COOKING'
+                customer.status = '?';
+                triggerCookingProcess(customer);
+            } 
+            // 🎯 TUGAS 18: Cek percabangan jika status pelanggan sama dengan 'READY_TO_SERVE'
+            // Ubah '?' menjadi: 'READY_TO_SERVE'
+            else if (customer.status === '?') {
+                // 🎯 TUGAS 19: Ubah status pelanggan menjadi 'EATING' saat pesanan disajikan
+                // Ubah '?' menjadi: 'EATING'
+                customer.status = '?';
+                
+                // Simulasikan pelanggan makan selama 2.5 detik
+                setTimeout(() => {
+                    // 🎯 TUGAS 20: Tambahkan uang/skor sebesar 25 poin (gameState.money += 25)
+                    // Ubah '?' menjadi: gameState.money
+                    '?' += 25;
+                    
+                    // Hapus pelanggan yang selesai makan dari meja
+                    gameState.activeCustomers = gameState.activeCustomers.filter(c => c.id !== tableId);
+                    updateUI();
+                }, 2500);
+            }
+            
+            updateUI();
         }
 
-        // BAGIAN 4: PERULANGAN (LOOPS)
-        // Tugas 13: Latihan Menyerang
-        for (let i = 0; i < 5; i++) {
-            cetakLog("Hero menebas serangga! 🗡️");
+        // ==========================================
+        // 5. RENDERING VISUAL & UI UPDATES (DOM REAL-TIME)
+        // ==========================================
+        function updateUI() {
+            document.getElementById('moneyVal').innerText = gameState.money;
+            document.getElementById('angryVal').innerText = gameState.angryCount;
+
+            const container = document.getElementById('tablesContainer');
+            container.innerHTML = '';
+
+            for (let i = 1; i <= 4; i++) {
+                const customer = gameState.activeCustomers.find(c => c.id === i);
+                
+                const tableDiv = document.createElement('div');
+                tableDiv.className = `table-card ${customer ? 'active' : ''}`;
+                tableDiv.onclick = () => handleTableClick(i);
+
+                if (!customer) {
+                    tableDiv.innerHTML = `
+                        <div class="table-number">Meja #${i}</div>
+                        <div class="customer-avatar">🪑</div>
+                        <div class="status-badge status-EMPTY">KOSONG (Klik untuk Panggil)</div>
+                    `;
+                } else {
+                    let avatar = '🧑‍💼';
+                    let statusTxt = customer.status;
+
+                    if (customer.status === 'WAITING_ORDER') { avatar = '🙋‍♂️'; statusTxt = 'Catat Pesanan'; }
+                    else if (customer.status === 'COOKING') { avatar = '👨‍🍳 🍰'; statusTxt = 'Sedang Memasak...'; }
+                    else if (customer.status === 'READY_TO_SERVE') { avatar = '🎂'; statusTxt = 'Sajikan Kue!'; }
+                    else if (customer.status === 'EATING') { avatar = '😋 🍰'; statusTxt = 'Sedang Makan'; }
+                    else if (customer.status === 'ANGRY') { avatar = '😡'; statusTxt = 'Marah!'; }
+
+                    tableDiv.innerHTML = `
+                        <div class="table-number">Meja #${i}</div>
+                        <div class="customer-avatar">${avatar}</div>
+                        <div class="status-badge status-${customer.status}">${statusTxt}</div>
+                        <div class="patience-bar-bg">
+                            <div class="patience-bar-fill" style="width: ${Math.max(0, customer.patience)}%;"></div>
+                        </div>
+                    `;
+                }
+
+                container.appendChild(tableDiv);
+            }
         }
 
-        // Tugas 14: Hitung Mundur Cooldown
-        for (let i = 5; i >= 1; i--) {
-            cetakLog(`Skill Cooldown: ${i} detik...`);
-        }
-        cetakLog("Skill Siap Digunakan!");
+        function startGame() {
+            gameState.money = 0;
+            gameState.angryCount = 0;
+            gameState.gameActive = true;
+            gameState.activeCustomers = [];
 
-        // Tugas 15: Panen Sumber Daya
-        let kayu = 0;
-        while (kayu < 50) {
-            kayu += 10;
-            cetakLog(`Kayu terkumpul: ${kayu}`);
-        }
+            // Spawn pelanggan pertama secara otomatis pada Meja #1
+            const firstCust = createCustomer(1);
+            gameState.activeCustomers.push(firstCust);
+            startCustomerTimer(firstCust);
 
-        // Tugas 16: Cetak Daftar Inventory
-        let inventaris = ["Salep", "Buku", "Kandang", "Pedang"];
-        for (let i = 0; i < inventaris.length; i++) {
-            cetakLog(`Item ${i + 1}: ${inventaris[i]}`);
+            updateUI();
         }
 
-        // BAGIAN 5: FUNGSI & MANIPULASI DOM
-        // Tugas 17: Fungsi Serang
-        function serang(namaMusuh) {
-            cetakLog(`Hero menyerang ${namaMusuh} dengan kekuatan penuh!`);
-        }
-        serang("Naga");
-
-        // Tugas 18: Fungsi Level Up
-        function naikLevel() {
-            level += 1;
-            cetakLog(`Level Up! Level baru: ${level}`);
-        }
-
-        // Tugas 19: Ganti Avatar via JS
-        document.getElementById('heroImg').src = 'https://api.iconify.design/game-icons/spartan-helmet.svg?color=%23d32f2f';
+        // Inisialisasi tampilan awal
+        updateUI();
     </script>
 </body>
 </html>
@@ -517,8 +648,11 @@
             </div>
         </div>
 
-        <div class="panel preview-panel">
-            <div class="panel-header">🎮 Output Sistem</div>
+        <div class="panel preview-panel" id="preview-panel">
+            <div class="panel-header">
+                <div>🎮 Output Sistem</div>
+                <button class="btn-fullscreen" id="fs-btn" onclick="toggleFullscreen()" title="Buka Mode Layar Penuh">🔲 Layar Penuh</button>
+            </div>
             <iframe id="preview-frame"></iframe>
         </div>
 
@@ -539,8 +673,47 @@
             
             urlAktif = URL.createObjectURL(blob);
             iframe.src = urlAktif;
+            
+            iframe.onload = () => {
+                iframe.contentWindow.focus();
+            };
         }
 
+        // Logika Mode Fullscreen
+        function toggleFullscreen() {
+            const panel = document.getElementById('preview-panel');
+            const btn = document.getElementById('fs-btn');
+            
+            if (!document.fullscreenElement) {
+                if (panel.requestFullscreen) {
+                    panel.requestFullscreen();
+                } else if (panel.webkitRequestFullscreen) { /* Safari */
+                    panel.webkitRequestFullscreen();
+                } else if (panel.msRequestFullscreen) { /* IE11 */
+                    panel.msRequestFullscreen();
+                }
+                btn.innerHTML = "🔳 Perkecil Layar";
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) { /* Safari */
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) { /* IE11 */
+                    document.msExitFullscreen();
+                }
+                btn.innerHTML = "🔲 Layar Penuh";
+            }
+        }
+
+        // Event listener saat user keluar dari fullscreen
+        document.addEventListener('fullscreenchange', () => {
+            const btn = document.getElementById('fs-btn');
+            if (!document.fullscreenElement) {
+                btn.innerHTML = "🔲 Layar Penuh";
+            }
+        });
+
+        // Pengaturan tombol Tab pada textarea
         const editor = document.getElementById('code-editor');
         editor.addEventListener('keydown', function(e) {
             if (e.key === 'Tab') {
