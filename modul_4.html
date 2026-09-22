@@ -286,8 +286,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- 🎯 TUGAS 1: Ubah judul tab browser di bawah ini dengan namamu -->
-    <title>Modul 4 - Pairs Memory Match Game [NAMA SISWA]</title>
+    <!-- 🎯 TUGAS 1: Mengubah Judul Tab Browser
+         Cara Mengerjakan: Ganti tanda '[?]' di dalam tag <title> di bawah ini dengan nama lengkap Anda sendiri. Contoh: [Budi Santoso] -->
+    <title>Modul 4 - Pairs Memory Match Game [?]</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <style>
@@ -336,7 +337,8 @@
             height: 380px;
             display: grid;
             
-            /* 🎯 TUGAS 2: Ubah '?' menjadi angka 4 untuk membuat grid 4 kolom */
+            /* 🎯 TUGAS 2: Mengatur Jumlah Kolom Grid Game
+               Cara Mengerjakan: Ubah tanda '?' di dalam fungsi repeat(?, 1fr) menjadi angka 4 agar tata letak kartu tersusun rapi menjadi 4 kolom. */
             grid-template-columns: repeat(?, 1fr);
             
             gap: 10px;
@@ -357,9 +359,10 @@
             transition: transform 0.2s;
         }
 
-        /* 🎯 TUGAS 3: Ubah '?' menjadi 180deg untuk memutar kartu saat status kelas 'flip' aktif */
+        /* 🎯 TUGAS 3: Efek Putar Kartu (Flip)
+           Cara Mengerjakan: Ganti tanda '?' pada 'rotateY(?)' menjadi '180deg' agar kartu berputar 180 derajat saat status kelas 'flip' aktif. */
         .card.flip {
-            transform: rotateY(?deg);
+            transform: rotateY(?);
         }
 
         .front-face,
@@ -373,7 +376,8 @@
             align-items: center;
             font-size: 2rem;
             
-            /* 🎯 TUGAS 4: Ubah '?' menjadi hidden agar bagian belakang kartu tidak tembus pandang */
+            /* 🎯 TUGAS 4: Menyembunyikan Sisi Belakang Kartu
+               Cara Mengerjakan: Ubah tanda '?' menjadi 'hidden' pada properti backface-visibility agar gambar di balik kartu tidak tembus pandang sebelum dibuka. */
             backface-visibility: ?;
             
             box-shadow: 0 4px 8px rgba(0,0,0,0.3);
@@ -397,8 +401,9 @@
             margin-top: 18px;
             padding: 10px 22px;
             
-            /* 🎯 TUGAS 5: Ganti warna tombol dari #ffcc00 menjadi warna pilihanmu, misal: '#ffcc00' */
-            background-color: #ffcc00;
+            /* 🎯 TUGAS 5: Mengubah Warna Tombol Reset
+               Cara Mengerjakan: Ganti kode '#??????' dengan kode warna heksadesimal pilihan Anda sendiri (contoh: #00ff66 atau #3399ff). */
+            background-color: #??????;
             
             border: none;
             border-radius: 8px;
@@ -406,7 +411,7 @@
             font-size: 0.95rem;
             cursor: pointer;
             font-weight: bold;
-            box-shadow: 0 4px 0 #cc9900;
+            box-shadow: 0 4px 0 #009933;
             transition: all 0.1s;
         }
 
@@ -436,8 +441,9 @@
 </head>
 <body>
 
-    <!-- 🎯 TUGAS 6: Ubah judul game H2 di bawah ini -->
-    <h2>🧠 Memory Match Game</h2>
+    <!-- 🎯 TUGAS 6: Mengubah Judul Utama Game (H2)
+         Cara Mengerjakan: Ganti teks di dalam tag <h2> dengan judul game kreasi Anda yang menarik dan unik. -->
+    <h2>🚀 [Judul Game Kamu] 🎮</h2>
 
     <div id="gameInfo">
         <span>Langkah: <span id="movesVal" style="color:#ffcc00;">0</span></span>
@@ -463,19 +469,21 @@
         // ==========================================
         // 1. MANAJEMEN STATUS (STATE MANAGEMENT)
         // ==========================================
+        // 🎯 TUGAS 7: Status Kartu Terbuka Pertama
+        // Cara Mengerjakan: Ganti '?' dengan nilai 'false' karena saat game dimulai, belum ada kartu yang dibuka.
+        let hasFlippedCard = ?;   
         
-        // 🎯 TUGAS 7: Setel nilai awal hasFlippedCard menjadi false (belum ada kartu pertama yang dibuka)
-        let hasFlippedCard = '?';
-        
-        // 🎯 TUGAS 8: Setel nilai awal isLocked menjadi false (papan game tidak dalam keadaan terkunci)
-        let isLocked = '?';
+        // 🎯 TUGAS 8: Status Pengunci Papan Game
+        // Cara Mengerjakan: Ganti '?' dengan nilai 'false' agar papan tidak terkunci saat awal permainan.
+        let isLocked = ?;             
         
         let firstCard = null;
         let secondCard = null;
         let moves = 0;
         
-        // 🎯 TUGAS 9: Setel nilai awal matchedPairs menjadi 0
-        let matchedPairs = '?';
+        // 🎯 TUGAS 9: Penghitung Pasangan yang Cocok
+        // Cara Mengerjakan: Ganti '?' dengan angka '0' karena awal permainan belum ada pasangan kartu yang ditemukan.
+        let matchedPairs = ?;             
 
         const gameContainer = document.getElementById('memory-game');
         const movesEl = document.getElementById('movesVal');
@@ -488,21 +496,24 @@
         function createBoard() {
             gameContainer.innerHTML = '';
             
-            // 🎯 TUGAS 20: Acak urutan kartu menggunakan Math.random() pada metode sort
-            cardsData.sort(() => 0.5 - '?');
+            // 🎯 TUGAS 20: Mengacak Urutan Kartu
+            // Cara Mengerjakan: Ganti '?' dengan fungsi pengacak '0.5 - Math.random()' di dalam .sort().
+            cardsData.sort(() => ?);
 
-            cardsData.forEach(icon => {
+            cardsData.forEach((icon, index) => {
                 const card = document.createElement('div');
                 card.classList.add('card');
                 card.dataset.icon = icon;
+                card.dataset.index = index;
 
                 card.innerHTML = `
                     <div class="front-face">${icon}</div>
                     <div class="back-face">❓</div>
                 `;
 
-                // 🎯 TUGAS 10: Tambahkan event listener 'click' pada elemen kartu yang memanggil fungsi flipCard
-                card.addEventListener('?', flipCard);
+                // 🎯 TUGAS 10: Menambahkan Event Listener Klik pada Kartu
+                // Cara Mengerjakan: Ganti '?' kedua dengan fungsi 'flipCard' agar kartu bisa merespons klik.
+                card.addEventListener('click', ?);
 
                 gameContainer.appendChild(card);
             });
@@ -512,22 +523,25 @@
         // 3. LOGIKA FLIP KARTU & EVENT HANDLING
         // ==========================================
         function flipCard() {
-            // Jika papan sedang dikunci, abaikan aksi klik
             if (isLocked) return;
             
-            // 🎯 TUGAS 11: Cegah mengeklik kartu yang sama dua kali (jika this === firstCard, maka return)
-            if (this === '?') return;
+            // 🎯 TUGAS 11: Mencegah Klik Kartu yang Sama Persis
+            // Cara Mengerjakan: Ganti '?' dengan variabel 'firstCard' agar pemain tidak bisa mengklik kartu yang sama dua kali berturut-turut.
+            if (this === ?) return;
 
-            // 🎯 TUGAS 12: Tambahkan class 'flip' ke elemen kartu yang diklik
+            // 🎯 TUGAS 12: Menambahkan Kelas CSS 'flip'
+            // Cara Mengerjakan: Ganti '?' dengan string 'flip' untuk memicu animasi buka kartu.
             this.classList.add('?');
 
             if (!hasFlippedCard) {
                 // Klik Kartu Pertama
-                // 🎯 TUGAS 13: Ubah status hasFlippedCard menjadi true
-                hasFlippedCard = '?';
+                // 🎯 TUGAS 13: Menandai Kartu Pertama Telah Dibuka
+                // Cara Mengerjakan: Ganti '?' dengan nilai 'true'.
+                hasFlippedCard = ?; 
                 
-                // 🎯 TUGAS 14: Simpan referensi kartu pertama yang diklik ke variabel firstCard (gunakan 'this')
-                firstCard = '?';
+                // 🎯 TUGAS 14: Menyimpan Referensi Kartu Pertama
+                // Cara Mengerjakan: Ganti '?' dengan nilai 'this'.
+                firstCard = ?;      
                 return;
             }
 
@@ -543,8 +557,9 @@
         // 4. LOGIKA PERCABANGAN PENCOCOKAN (CHECK MATCH)
         // ==========================================
         function checkForMatch() {
-            // 🎯 TUGAS 15: Cek apakah icon kartu pertama sama dengan icon kartu kedua (secondCard.dataset.icon)
-            let isMatch = firstCard.dataset.icon === '?';
+            // 🎯 TUGAS 15: Membandingkan Ikon Dua Kartu
+            // Cara Mengerjakan: Ganti '?' dengan 'secondCard.dataset.icon' untuk mencocokkan ikon kartu pertama dan kedua.
+            let isMatch = firstCard.dataset.icon === ?;
 
             if (isMatch) {
                 disableCards();
@@ -554,7 +569,6 @@
         }
 
         function disableCards() {
-            // Hapus event listener agar kartu yang sudah cocok tidak dapat diklik lagi
             firstCard.removeEventListener('click', flipCard);
             secondCard.removeEventListener('click', flipCard);
 
@@ -563,8 +577,9 @@
 
             resetBoard();
 
-            // 🎯 TUGAS 19: Cek jika matchedPairs telah sama dengan total pasangan (cardIcons.length)
-            if (matchedPairs === '?') {
+            // 🎯 TUGAS 19: Deteksi Kemenangan Permainan
+            // Cara Mengerjakan: Ganti '?' dengan 'cardIcons.length' untuk mengecek apakah semua pasangan sudah ditemukan.
+            if (matchedPairs === ?) {
                 setTimeout(() => {
                     winOverlay.style.display = 'flex';
                 }, 500);
@@ -572,17 +587,20 @@
         }
 
         function unflipCards() {
-            // 🎯 TUGAS 16: Kunci papan sementara agar pemain tidak bisa mengeklik kartu lain (isLocked = true)
-            isLocked = '?';
+            // 🎯 TUGAS 16: Mengunci Papan Sementara
+            // Cara Mengerjakan: Ganti '?' dengan nilai 'true' agar papan terkunci saat salah.
+            isLocked = ?;
 
-            // 🎯 TUGAS 18: Setel durasi timer pembalikan kartu kembali menjadi 1000 milidetik (1 detik)
+            // 🎯 TUGAS 18: Mengatur Durasi Timer Tampilan Kartu Salah (Dalam Milidetik)
+            // Cara Mengerjakan: Ganti '?' dengan angka '1000' (artinya 1 detik).
             setTimeout(() => {
-                // 🎯 TUGAS 17: Hapus class 'flip' dari kartu pertama dan kartu kedua
+                // 🎯 TUGAS 17: Menghapus Kelas 'flip' untuk Menutup Kembali Kartu
+                // Cara Mengerjakan: Ganti '?' dengan string 'flip' untuk menghapus kelas putar kartu.
                 firstCard.classList.remove('?');
-                secondCard.classList.remove('flip');
+                secondCard.classList.remove('?');
 
                 resetBoard();
-            }, '?');
+            }, ?); 
         }
 
         function resetBoard() {
